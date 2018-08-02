@@ -8,6 +8,7 @@ class App extends Component {
       <div className="App">
         {/* <ChatContainer /> */}
         <ChessContainer />
+        <ChatContainer />
       </div>
     );
   }
