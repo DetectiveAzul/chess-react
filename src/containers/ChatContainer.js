@@ -42,12 +42,11 @@ class ChatContainer extends Component {
 
   submitForm(event) {
     event.preventDefault();
-
+    event.target["msg-field"].value = "";
     //Make sure we don't send an empty message
     if (this.state.name && this.state.msg) {
       const newMessage = {author: this.state.name, text: this.state.msg };
       this.socket.emit('chat', newMessage);
-
     };
   };
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './app.css';
 import ChatContainer from './containers/ChatContainer.js';
 import ChessContainer from './containers/ChessContainer.js';
 

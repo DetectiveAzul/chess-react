@@ -1,0 +1,13 @@
+.App {
+  display: flex;
+}
+
+.chess-container, .chat-container {
+  margin: 10px;
+}
+
+.chat-container {
+  height: 400px;
+  width: 400px;
+  overflow: scroll;
+}
