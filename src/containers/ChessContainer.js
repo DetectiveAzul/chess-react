@@ -10,7 +10,7 @@ class ChessContainer extends Component {
       fen: 'start'
     };
 
-    this.socket = io('localhost:3001');
+    this.socket = io('https://server-bkztjzrngb.now.sh/');
     this.socket.on('chess-received', this.changeBoard.bind(this));
     this.chessMove = this.chessMove.bind(this);
   };
