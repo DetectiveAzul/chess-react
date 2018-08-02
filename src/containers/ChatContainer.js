@@ -12,7 +12,7 @@ class ChatContainer extends Component {
       name: null,
       msg: null
     };
-    this.socket = io('http://localhost:8080');
+    this.socket = io('https://zeit.co/detectiveazul/server/ainorrigmy:443');
     this.socket.on('chat', this.addMessage.bind(this));
 
     this.nameKeyUp = this.nameKeyUp.bind(this);
