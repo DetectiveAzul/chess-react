@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "react": "^16.4.2",
+    "react-chessboardjs": "^0.5.3",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.4",
     "socket.io": "^2.1.1"
