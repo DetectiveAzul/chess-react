@@ -11,12 +11,30 @@ class ChatContainer extends Component {
       name: null,
       msg: null
     };
+
+    this.nameKeyUp = this.nameKeyUp.bind(this);
+    this.msgKeyUp = this.msgKeyUp.bind(this);
   };
+
+  nameKeyUp(event) {
+    this.setState({
+      name: event.target.value
+    });
+  };
+
+  msgKeyUp(event) {
+    this.setState({
+      msg: event.target.value
+    });
+  }
 
   render() {
     return(
     <div className = 'chat-container'>
-      <ChatForm />
+      <ChatForm
+        nameKeyUp = {this.nameKeyUp}
+        msgKeyUp = {this.msgKeyUp}
+      />
     </div>
   )};
 
