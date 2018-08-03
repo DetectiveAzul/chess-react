@@ -12,7 +12,8 @@ class ChessContainer extends Component {
       fen: 'start',
       game: new Chess(),
       status: 'Game Started, White to move',
-      gameHelper: new GameHelper()
+      gameHelper: new GameHelper(),
+      id: null
     };
 
     this.onDrop = this.onDrop.bind(this);
