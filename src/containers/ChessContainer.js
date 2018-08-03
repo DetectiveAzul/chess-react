@@ -104,6 +104,7 @@ class ChessContainer extends Component {
     this.setState({
       fen: newBoard
     });
+    this.state.game.load(newBoard);
     console.log('Chess newBoard received through socket');
   };
 
