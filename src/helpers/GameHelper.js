@@ -34,13 +34,6 @@ class GameHelper {
       .then(() => console.log('Game Saved'))
   };
 
-  load(id) {
-    const request = new RequestHelper(`http://localhost:3001/games/${id}`);
-    request.get()
-      .then((res) => {
-        //TODO
-      });
-  }
 
 };
 
