@@ -2,11 +2,6 @@ import React, {Component} from 'react';
 
 class ChatForm extends Component {
 
-  constructor(props) {
-    super(props);
-
-  };
-
   render() {
     return(
       <form className='chat-form' onSubmit={this.props.submitForm}>
