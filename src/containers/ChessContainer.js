@@ -10,7 +10,7 @@ class ChessContainer extends Component {
     this.state = {
       fen: 'start',
       game: new Chess(),
-      status: null
+      status: 'Game Started, White to move'
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -25,7 +25,7 @@ class ChessContainer extends Component {
 
   //Initial setting will be here
   componentDidMount() {
-
+    this.chatMessage();
   }
 
   //Events

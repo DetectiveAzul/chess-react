@@ -9,5 +9,10 @@
 .chat-container {
   height: 400px;
   width: 400px;
+}
+
+.messages-container {
+  height: 100%;
+  width: 100%;
   overflow: scroll;
 }

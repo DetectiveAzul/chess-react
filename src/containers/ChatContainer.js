@@ -63,7 +63,9 @@ class ChatContainer extends Component {
         msgKeyUp = {this.msgKeyUp}
         submitForm = {this.submitForm}
       />
-      {messages}
+      <div className = 'messages-container'>
+        {messages}
+      </div>
     </div>
   )};
 
