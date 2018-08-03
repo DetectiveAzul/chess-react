@@ -9,11 +9,11 @@ class ChessContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      fen: 'start',
-      game: new Chess(),
+      fen: props.fen,
+      game: new Chess(props.fen),
       status: 'Game Started, White to move',
       gameHelper: new GameHelper(),
-      id: null
+      id: props.id
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -25,9 +25,15 @@ class ChessContainer extends Component {
 
   };
 
-  //Initial setting will be here
-  componentDidMount() {
+  componentWillMount() {
+    //This will check if it is a new game or a loaded game
+    //TODO: Checking for creation of new games
     // this.state.gameHelper.create(this.state);
+    
+    this.updateStatus();
+  }
+
+  componentDidMount() {
     this.chatMessage();
   };
 
@@ -84,7 +90,7 @@ class ChessContainer extends Component {
     console.log('onMoveEnd fired')
     this.socket.emit('chess-moved', this.state.game.fen());
     this.chatMessage();
-    // this.state.gameHelper.save(this.state);
+    this.state.gameHelper.save(this.state);
   };
 
   chatMessage() {

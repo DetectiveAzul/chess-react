@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.Game {
+  display: flex;
+}
+
 .chess-container, .chat-container {
   margin: 10px;
 }
@@ -15,4 +19,11 @@
   height: 100%;
   width: 100%;
   overflow: scroll;
+}
+
+.lobby-container {
+  display: flex;
+}
+.game-saved-entry {
+  margin: 15px;
 }
