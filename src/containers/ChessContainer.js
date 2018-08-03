@@ -9,13 +9,17 @@ class ChessContainer extends Component {
     super()
     this.state = {
       fen: 'start',
-      game: new Chess()
+      game: new Chess(),
+      status: null
     };
-    
+
     this.onDrop = this.onDrop.bind(this);
     this.onMoveEnd = this.onMoveEnd.bind(this);
+    this.updateStatus = this.updateStatus.bind(this);
+    this.chatMessage = this.chatMessage.bind(this);
     this.socket = io('localhost:3001');
     this.socket.on('chess-received', this.changeBoard.bind(this));
+
 
   };
 
@@ -28,6 +32,7 @@ class ChessContainer extends Component {
   onMoveEnd() {
     console.log('onMoveEnd fired')
     this.socket.emit('chess-moved', this.state.game.fen());
+    this.chatMessage();
   };
 
   onDrop(square,toSquare) {
@@ -39,6 +44,8 @@ class ChessContainer extends Component {
     });
 
     if (move === null) return 'snapback';
+
+    this.updateStatus()
   };
 
   changeBoard(newBoard) {
@@ -46,6 +53,48 @@ class ChessContainer extends Component {
       fen: newBoard
     });
     console.log('Chess newBoard received through socket');
+  };
+
+  updateStatus() {
+    let status = '';
+
+    var playerTurn = 'White';
+    if (this.state.game.turn() === 'b') {
+      playerTurn = 'Black';
+    };
+
+    //Checkmate?
+    if (this.state.game.in_checkmate() === true) {
+      status = 'Game Over, ' + playerTurn + ' is in checkmate.';
+    }
+
+    //Draw
+    else if (this.state.game.in_draw() === true) {
+      status = 'Game Over, it\'s a draw'
+    }
+
+    //Game still on
+    else {
+      status = playerTurn + ' to move';
+
+      // check?
+      if (this.state.game.in_check() === true) {
+        status += ', ' + playerTurn + ' is in check';
+      };
+    };
+
+    this.setState({
+      status: status
+    });
+  };
+
+  chatMessage() {
+    const statusMessage = {
+      author: 'System',
+      text: this.state.status
+    };
+
+    this.socket.emit('chat', statusMessage);
   };
 
 
