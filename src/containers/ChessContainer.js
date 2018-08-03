@@ -27,7 +27,7 @@ class ChessContainer extends Component {
 
   //Initial setting will be here
   componentDidMount() {
-    this.state.gameHelper.create(this.state);
+    // this.state.gameHelper.create(this.state);
     this.chatMessage();
   };
 
@@ -84,7 +84,7 @@ class ChessContainer extends Component {
     console.log('onMoveEnd fired')
     this.socket.emit('chess-moved', this.state.game.fen());
     this.chatMessage();
-    this.state.gameHelper.save(this.state);
+    // this.state.gameHelper.save(this.state);
   };
 
   chatMessage() {
