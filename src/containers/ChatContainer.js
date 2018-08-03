@@ -12,7 +12,7 @@ class ChatContainer extends Component {
       name: null,
       msg: null
     };
-    this.socket = io('https://server-bkztjzrngb.now.sh/');
+    this.socket = io('localhost:3001');
     this.socket.on('chat', this.addMessage.bind(this));
 
     this.nameKeyUp = this.nameKeyUp.bind(this);
