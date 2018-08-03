@@ -20,20 +20,14 @@ class ChessContainer extends Component {
     this.socket = io('localhost:3001');
     this.socket.on('chess-received', this.changeBoard.bind(this));
 
-
   };
 
   //Initial setting will be here
   componentDidMount() {
     this.chatMessage();
-  }
+  };
 
   //Events
-  onMoveEnd() {
-    console.log('onMoveEnd fired')
-    this.socket.emit('chess-moved', this.state.game.fen());
-    this.chatMessage();
-  };
 
   onDrop(square,toSquare) {
     console.log('onDrop fired', square, toSquare);
@@ -46,13 +40,6 @@ class ChessContainer extends Component {
     if (move === null) return 'snapback';
 
     this.updateStatus()
-  };
-
-  changeBoard(newBoard) {
-    this.setState({
-      fen: newBoard
-    });
-    console.log('Chess newBoard received through socket');
   };
 
   updateStatus() {
@@ -88,6 +75,13 @@ class ChessContainer extends Component {
     });
   };
 
+
+  onMoveEnd() {
+    console.log('onMoveEnd fired')
+    this.socket.emit('chess-moved', this.state.game.fen());
+    this.chatMessage();
+  };
+
   chatMessage() {
     const statusMessage = {
       author: 'System',
@@ -97,14 +91,21 @@ class ChessContainer extends Component {
     this.socket.emit('chat', statusMessage);
   };
 
+  changeBoard(newBoard) {
+    this.setState({
+      fen: newBoard
+    });
+    console.log('Chess newBoard received through socket');
+  };
+
 
   render() {
     return(
       <div className='chess-container'>
         <Chessboard
-          onMoveEnd={this.onMoveEnd}
-          onDrop={this.onDrop}
           fen={this.state.fen}
+          onDrop={this.onDrop}
+          onMoveEnd={this.onMoveEnd}
         />
       </div>
     );
