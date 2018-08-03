@@ -1,8 +1,8 @@
-const Request = function (url) {
+const RequestHelper = function (url) {
   this.url = url;
 };
 
-Request.prototype.get = function () {
+RequestHelper.prototype.get = function () {
   return fetch(this.url)
     .then((response) => response.json());
 };
@@ -16,13 +16,23 @@ Request.prototype.get = function () {
 //     .then((response) => response.json());
 // };
 //
-// Request.prototype.post = function (payload) {
-//   return fetch(this.url, {
-//     method: 'POST',
-//     body: JSON.stringify(payload),
-//     headers: { 'Content-Type': 'application/json' }
-//   })
-//     .then((response) => response.json());
-// };
 
-module.exports = Request;
+RequestHelper.prototype.post = function (payload) {
+  return fetch(this.url, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+    headers: { 'Content-Type': 'application/json' }
+  })
+    .then((response) => response.json());
+};
+
+RequestHelper.prototype.put = function (payload) {
+  return fetch(this.url, {
+    method: 'PUT',
+    body: JSON.stringify(payload),
+    headers: { 'Content-Type': 'application/json' }
+  })
+    .then((response) => response.json());
+};
+
+module.exports = RequestHelper;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GameHelper from '../helpers/GameHelper.js';
 import Chessboard from 'react-chessboardjs';
 import Chess from 'chess.js';
 import io from 'socket.io-client';
@@ -10,7 +11,8 @@ class ChessContainer extends Component {
     this.state = {
       fen: 'start',
       game: new Chess(),
-      status: 'Game Started, White to move'
+      status: 'Game Started, White to move',
+      gameHelper: new GameHelper()
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -24,6 +26,7 @@ class ChessContainer extends Component {
 
   //Initial setting will be here
   componentDidMount() {
+    this.state.gameHelper.create(this.state);
     this.chatMessage();
   };
 
@@ -80,6 +83,7 @@ class ChessContainer extends Component {
     console.log('onMoveEnd fired')
     this.socket.emit('chess-moved', this.state.game.fen());
     this.chatMessage();
+    this.state.gameHelper.save(this.state);
   };
 
   chatMessage() {
