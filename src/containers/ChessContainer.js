@@ -11,11 +11,12 @@ class ChessContainer extends Component {
       fen: 'start',
       game: new Chess()
     };
-
-    // this.socket = io('localhost:3001');
-    // this.socket.on('chess-received', this.changeBoard.bind(this));
-    // this.onMoveEnd = this.onMoveEnd.bind(this);
+    
     this.onDrop = this.onDrop.bind(this);
+    this.onMoveEnd = this.onMoveEnd.bind(this);
+    this.socket = io('localhost:3001');
+    this.socket.on('chess-received', this.changeBoard.bind(this));
+
   };
 
   //Initial setting will be here
@@ -23,17 +24,11 @@ class ChessContainer extends Component {
 
   }
 
-  // changeBoard(newBoard) {
-  //   this.setState({
-  //     fen: newBoard
-  //   });
-  //   console.log('Chess newBoard received through socket');
-  // };
-
-  // onMoveEnd(oldPos, newPos) {
-  //   console.log('onMoveEnd fired', oldPos, newPos);
-  //   // this.socket.emit('chess-moved', newPos);
-  // }
+  //Events
+  onMoveEnd() {
+    console.log('onMoveEnd fired')
+    this.socket.emit('chess-moved', this.state.game.fen());
+  };
 
   onDrop(square,toSquare) {
     console.log('onDrop fired', square, toSquare);
@@ -46,14 +41,21 @@ class ChessContainer extends Component {
     if (move === null) return 'snapback';
   };
 
+  changeBoard(newBoard) {
+    this.setState({
+      fen: newBoard
+    });
+    console.log('Chess newBoard received through socket');
+  };
+
+
   render() {
     return(
       <div className='chess-container'>
         <Chessboard
-          // onMoveEnd={this.onMoveEnd}
+          onMoveEnd={this.onMoveEnd}
           onDrop={this.onDrop}
           fen={this.state.fen}
-
         />
       </div>
     );
