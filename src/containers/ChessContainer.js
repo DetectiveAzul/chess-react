@@ -6,8 +6,8 @@ import io from 'socket.io-client';
 
 
 class ChessContainer extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       fen: 'start',
       game: new Chess(),
