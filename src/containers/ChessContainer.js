@@ -27,9 +27,7 @@ class ChessContainer extends Component {
 
   componentWillMount() {
     //This will check if it is a new game or a loaded game
-    //TODO: Checking for creation of new games
-    // this.state.gameHelper.create(this.state);
-    
+    if (!this.state.id) this.state.gameHelper.create(this.state);
     this.updateStatus();
   }
 
