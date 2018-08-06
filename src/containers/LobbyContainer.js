@@ -13,7 +13,7 @@ class LobbyContainer extends Component {
   }
 
   componentWillMount() {
-    const request = new RequestHelper('http://localhost:3001/games');
+    const request = new RequestHelper(`${config.serverGame}`);
     request.get()
       .then( (gamesData) => {
         const games = gamesData.map((gameData, index) => {

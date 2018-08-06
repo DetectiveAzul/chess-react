@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ChatForm from '../components/ChatForm.js';
 import Message from '../components/Message.js';
 import io from 'socket.io-client';
+import config from '../config/config.js';
 
 class ChatContainer extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class ChatContainer extends Component {
       msg: null,
       id: props.id
     };
-    this.socket = io('localhost:3001');
+    this.socket = io(`${config.server}`);
     this.socket.on(`chat-${this.state.id}`, this.addMessage.bind(this));
 
     this.nameKeyUp = this.nameKeyUp.bind(this);

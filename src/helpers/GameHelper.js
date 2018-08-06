@@ -12,7 +12,7 @@ class GameHelper {
   };
 
   save(state) {
-    const request = new RequestHelper(`http://localhost:3001/games/${state.id}`);
+    const request = new RequestHelper(``${config.server}`/${state.id}`);
     const payload = this.createPayload(state);
 
     request.put(payload)

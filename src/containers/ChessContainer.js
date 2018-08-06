@@ -20,7 +20,7 @@ class ChessContainer extends Component {
     this.onMoveEnd = this.onMoveEnd.bind(this);
     this.updateStatus = this.updateStatus.bind(this);
     this.chatMessage = this.chatMessage.bind(this);
-    this.socket = io('localhost:3001');
+    this.socket = io(`${config.server}`);
     this.socket.on(`chess-received-${this.state.id}`, this.changeBoard.bind(this));
 
   };
