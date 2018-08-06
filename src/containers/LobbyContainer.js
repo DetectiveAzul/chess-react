@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import RequestHelper from '../helpers/RequestHelper.js';
 import GameSavedEntry from '../components/GameSavedEntry.js';
+import NewGameEntry from '../components/NewGameEntry.js';
 
 class LobbyContainer extends Component {
   constructor(props) {
@@ -33,7 +34,9 @@ class LobbyContainer extends Component {
     return(
       <div className='lobby-container'>
       {this.state.games}
+      <NewGameEntry newGame = {this.props.newGame} />
       </div>
+
     )
   }
 }

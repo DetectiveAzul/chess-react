@@ -12,11 +12,12 @@ class App extends Component {
     }
 
     this.loadGame = this.loadGame.bind(this);
+    this.newGame = this.newGame.bind(this);
   }
 
   componentDidMount() {
     this.setState({
-      view: <LobbyContainer loadGame={this.loadGame} />
+      view: <LobbyContainer loadGame={this.loadGame} newGame={this.newGame} />
     });
   };
 
@@ -29,6 +30,21 @@ class App extends Component {
           view: <GameContainer id={id} fen={gameData[0].fen} />
         });
       });
+  };
+
+  newGame() {
+    const request = new RequestHelper(`http://localhost:3001/games`);
+    request.post({
+      gameData: {
+        fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+      }
+    }).then((gamesData) => {
+      console.log(gamesData);
+      this.setState({
+        view: <GameContainer id={gamesData[gamesData.length -1]._id} />
+      });
+
+    });
   };
 
   render() {
