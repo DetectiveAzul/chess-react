@@ -3,6 +3,7 @@ import './app.css';
 import LobbyContainer from './containers/LobbyContainer.js';
 import GameContainer from './containers/GameContainer.js';
 import RequestHelper from './helpers/RequestHelper.js';
+import config from './config/config.js';
 
 class App extends Component {
   constructor() {
@@ -23,7 +24,7 @@ class App extends Component {
 
 
   loadGame(id) {
-    const request = new RequestHelper(`http://localhost:3001/games/${id}`);
+    const request = new RequestHelper(`${config.serverGame}/${id}`);
     request.get()
       .then((gameData) => {
         this.setState({
@@ -37,7 +38,7 @@ class App extends Component {
   };
 
   newGame() {
-    const request = new RequestHelper(`http://localhost:3001/games`);
+    const request = new RequestHelper(`${config.serverGame}`);
     request.post({
       gameData: {
         fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
