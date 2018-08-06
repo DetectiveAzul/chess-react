@@ -4,6 +4,7 @@
 
 .Game {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .chess-container, .chat-container {
@@ -23,6 +24,7 @@
 
 .lobby-container {
   display: flex;
+  flex-wrap: wrap;
 }
 .game-saved-entry {
   margin: 15px;

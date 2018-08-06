@@ -24,6 +24,7 @@ class LobbyContainer extends Component {
             loadGame = {this.props.loadGame}
            />
         });
+        games.reverse();
         this.setState({games: games});
       })
   }
@@ -33,8 +34,8 @@ class LobbyContainer extends Component {
   render() {
     return(
       <div className='lobby-container'>
-      {this.state.games}
       <NewGameEntry newGame = {this.props.newGame} />
+      {this.state.games}
       </div>
 
     )
