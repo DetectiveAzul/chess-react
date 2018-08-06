@@ -31,6 +31,7 @@ class ChessContainer extends Component {
     //Config functions
     this.swapOrientation = this.swapOrientation.bind(this);
     this.undoMovement = this.undoMovement.bind(this);
+    this.randomMovement = this.randomMovement.bind(this);
 
   };
 
@@ -57,6 +58,16 @@ class ChessContainer extends Component {
     this.updateHistory()
     this.updateStatus()
   };
+
+  updateHistory() {
+    const oldBoard = this.state.fen;
+    const newHistory = this.state.history;
+    newHistory.push(oldBoard);
+    this.setState({
+      history: newHistory
+    });
+
+  }
 
   updateStatus() {
     let status = '';
@@ -112,15 +123,7 @@ class ChessContainer extends Component {
     this.socket.emit('chat', statusMessage);
   };
 
-  updateHistory() {
-    const oldBoard = this.state.fen;
-    const newHistory = this.state.history;
-    newHistory.push(oldBoard);
-    this.setState({
-      history: newHistory
-    });
 
-  }
 
   changeBoard(chessObject) {
     this.setState({
@@ -158,6 +161,14 @@ class ChessContainer extends Component {
     };
   };
 
+  randomMovement() {
+    const possibleMoves = this.state.game.moves();
+    const randomIndex = Math.floor(Math.random() * possibleMoves.length);
+    this.state.game.move(possibleMoves[randomIndex]);
+    this.updateHistory();
+    this.onMoveEnd();
+  }
+
   render() {
     return(
       <div className='chess-container'>
@@ -170,6 +181,7 @@ class ChessContainer extends Component {
         <ChessBoardConfigMenu
           swapOrientation={this.swapOrientation}
           undoMovement={this.undoMovement}
+          randomMovement={this.randomMovement}
         />
       </div>
     );
