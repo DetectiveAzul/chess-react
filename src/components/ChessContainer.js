@@ -4,6 +4,8 @@ import Chessboard from 'react-chessboardjs';
 import Chess from 'chess.js';
 import io from 'socket.io-client';
 import config from '../config/config.js';
+import ChessBoardConfigMenu from './ChessBoardConfigMenu.js';
+
 
 
 
@@ -12,7 +14,9 @@ class ChessContainer extends Component {
     super(props)
     this.state = {
       fen: props.fen,
+      orientation: 'w',
       game: new Chess(props.fen),
+      history: props.history,
       status: null,
       gameHelper: new GameHelper(),
       id: props.id
@@ -24,6 +28,9 @@ class ChessContainer extends Component {
     this.chatMessage = this.chatMessage.bind(this);
     this.socket = io(`${config.server}`);
     this.socket.on(`chess-received-${this.state.id}`, this.changeBoard.bind(this));
+    //Config functions
+    this.swapOrientation = this.swapOrientation.bind(this);
+    this.undoMovement = this.undoMovement.bind(this);
 
   };
 
@@ -47,6 +54,7 @@ class ChessContainer extends Component {
 
     if (move === null) return 'snapback';
 
+    this.updateHistory()
     this.updateStatus()
   };
 
@@ -88,7 +96,6 @@ class ChessContainer extends Component {
     console.log('onMoveEnd fired')
     this.socket.emit('chess-moved', {fen:this.state.game.fen(), id:this.state.id});
     this.chatMessage();
-    this.state.gameHelper.save(this.state);
   };
 
   chatMessage() {
@@ -101,22 +108,65 @@ class ChessContainer extends Component {
     this.socket.emit('chat', statusMessage);
   };
 
+  updateHistory() {
+    const oldBoard = this.state.fen;
+    const newHistory = this.state.history;
+    newHistory.push(oldBoard);
+    this.setState({
+      history: newHistory
+    });
+
+  }
+
   changeBoard(newBoard) {
     this.setState({
-      fen: newBoard
+      fen: newBoard,
     });
     this.state.game.load(newBoard);
+    this.state.gameHelper.save(this.state);
+
   };
 
+  ///Config menu functions
+  swapOrientation() {
+    console.log('Swapping orientation');
+    if (this.state.orientation === 'w') {
+      this.setState({
+        orientation: 'b'
+      });
+    } else {
+      this.setState({
+        orientation: 'w'
+      });
+    };
+  };
+
+  getPreviousMovement() {
+    return this.state.history.pop();
+  };
+
+  undoMovement() {
+    const previousMovement = this.getPreviousMovement();
+    if (previousMovement) {
+      this.state.game.load(previousMovement);
+      this.onMoveEnd();
+    };
+  };
 
   render() {
     return(
+      <div className='chess-container'>
         <Chessboard
           fen={this.state.fen}
-          orientation={this.props.orientation}
+          orientation={this.state.orientation}
           onDrop={this.onDrop}
           onMoveEnd={this.onMoveEnd}
         />
+        <ChessBoardConfigMenu
+          swapOrientation={this.swapOrientation}
+          undoMovement={this.undoMovement}
+        />
+      </div>
     );
   }
 

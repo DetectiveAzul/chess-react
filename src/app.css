@@ -16,6 +16,15 @@
   width: 400px;
 }
 
+.chess-config-container {
+  display: flex;
+}
+
+.config-input, .chat-input {
+  margin: 5px;
+  flex: 1;
+}
+
 .messages-container {
   height: 100%;
   width: 100%;

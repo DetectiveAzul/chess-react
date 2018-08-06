@@ -27,7 +27,11 @@ class App extends Component {
     request.get()
       .then((gameData) => {
         this.setState({
-          view: <GameContainer id={id} fen={gameData[0].fen} />
+          view: <GameContainer
+            id={id}
+            fen={gameData[0].fen}
+            history={gameData[0].history}
+          />
         });
       });
   };
@@ -36,11 +40,17 @@ class App extends Component {
     const request = new RequestHelper(`http://localhost:3001/games`);
     request.post({
       gameData: {
-        fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+        fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        history: []
       }
     }).then((gamesData) => {
+        gamesData.reverse();
         this.setState({
-        view: <GameContainer id={gamesData[gamesData.length -1]._id} />
+        view: <GameContainer
+          id={gamesData[0]._id}
+          fen={gamesData[0].fen}
+          history={gamesData[0].history}
+        />
       });
 
     });

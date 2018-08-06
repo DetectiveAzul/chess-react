@@ -8,7 +8,8 @@ class GameHelper {
   createPayload(state) {
     return {
       gameData: {
-        fen: state.game.fen()
+        fen: state.game.fen(),
+        history: state.history
       }
     };
   };
