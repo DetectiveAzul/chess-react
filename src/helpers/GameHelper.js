@@ -1,4 +1,6 @@
 import RequestHelper from './RequestHelper.js';
+import config from '../config/config.js';
+
 
 class GameHelper {
 

@@ -3,6 +3,8 @@ import GameHelper from '../helpers/GameHelper.js';
 import Chessboard from 'react-chessboardjs';
 import Chess from 'chess.js';
 import io from 'socket.io-client';
+import config from '../config/config.js';
+
 
 
 class ChessContainer extends Component {
