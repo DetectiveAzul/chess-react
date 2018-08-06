@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ChatForm from '../components/ChatForm.js';
-import Message from '../components/Message.js';
+import ChatForm from './ChatForm.js';
+import Message from './Message.js';
 import io from 'socket.io-client';
 import config from '../config/config.js';
 

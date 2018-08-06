@@ -111,13 +111,12 @@ class ChessContainer extends Component {
 
   render() {
     return(
-      <div className='chess-container'>
         <Chessboard
           fen={this.state.fen}
+          orientation={this.props.orientation}
           onDrop={this.onDrop}
           onMoveEnd={this.onMoveEnd}
         />
-      </div>
     );
   }
 

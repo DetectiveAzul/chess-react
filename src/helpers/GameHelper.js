@@ -14,7 +14,7 @@ class GameHelper {
   };
 
   save(state) {
-    const request = new RequestHelper(`${config.server}/${state.id}`);
+    const request = new RequestHelper(`${config.serverGame}/${state.id}`);
     const payload = this.createPayload(state);
 
     request.put(payload)
