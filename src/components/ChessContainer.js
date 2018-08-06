@@ -94,7 +94,11 @@ class ChessContainer extends Component {
 
   onMoveEnd() {
     console.log('onMoveEnd fired')
-    this.socket.emit('chess-moved', {fen:this.state.game.fen(), id:this.state.id});
+    this.socket.emit('chess-moved', {
+      fen:this.state.game.fen(),
+      id:this.state.id,
+      history: this.state.history
+    });
     this.chatMessage();
   };
 
@@ -118,11 +122,12 @@ class ChessContainer extends Component {
 
   }
 
-  changeBoard(newBoard) {
+  changeBoard(chessObject) {
     this.setState({
-      fen: newBoard,
+      fen: chessObject.fen,
+      history: chessObject.history
     });
-    this.state.game.load(newBoard);
+    this.state.game.load(chessObject.fen);
     this.state.gameHelper.save(this.state);
 
   };
