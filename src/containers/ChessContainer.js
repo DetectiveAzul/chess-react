@@ -11,7 +11,7 @@ class ChessContainer extends Component {
     this.state = {
       fen: props.fen,
       game: new Chess(props.fen),
-      status: 'Game Started, White to move',
+      status: null,
       gameHelper: new GameHelper(),
       id: props.id
     };
@@ -27,9 +27,12 @@ class ChessContainer extends Component {
 
   componentWillMount() {
     //This will check if it is a new game or a loaded game
-    if (!this.state.id) this.state.gameHelper.create(this.state);
+    //and then do the proper creation of a new entry on the db
+    if (!this.state.id) {
+      this.state.gameHelper.create(this.state);
+    };
     this.updateStatus();
-  }
+  };
 
   componentDidMount() {
     this.chatMessage();
@@ -105,7 +108,6 @@ class ChessContainer extends Component {
       fen: newBoard
     });
     this.state.game.load(newBoard);
-    console.log('Chess newBoard received through socket');
   };
 
 

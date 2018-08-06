@@ -4,7 +4,7 @@ import Chessboard from 'react-chessboardjs';
 const GameSavedEntry = (props) => {
 
   const handleClick = function() {
-    props.loadGame(props.id, props.fen);
+    props.loadGame(props.id);
   }
 
   return(

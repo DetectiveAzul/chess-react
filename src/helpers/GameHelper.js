@@ -34,7 +34,6 @@ class GameHelper {
       .then(() => console.log('Game Saved'))
   };
 
-
 };
 
 
