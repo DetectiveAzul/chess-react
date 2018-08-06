@@ -166,6 +166,7 @@ class ChessContainer extends Component {
     const randomIndex = Math.floor(Math.random() * possibleMoves.length);
     this.state.game.move(possibleMoves[randomIndex]);
     this.updateHistory();
+    this.updateStatus();
     this.onMoveEnd();
   }
 

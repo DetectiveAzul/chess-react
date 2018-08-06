@@ -9,13 +9,13 @@ RequestHelper.prototype.get = function () {
 
 //TODO: Adapt to my API
 
-// Request.prototype.delete = function (id) {
-//   return fetch(`${this.url}/${id}`, {
-//     method: 'DELETE'
-//   })
-//     .then((response) => response.json());
-// };
-//
+RequestHelper.prototype.delete = function (id) {
+  return fetch(`${this.url}/${id}`, {
+    method: 'DELETE'
+  })
+    .then((response) => response.json());
+};
+
 
 RequestHelper.prototype.post = function (payload) {
   return fetch(this.url, {
