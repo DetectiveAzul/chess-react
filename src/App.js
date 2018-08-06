@@ -39,8 +39,7 @@ class App extends Component {
         fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
       }
     }).then((gamesData) => {
-      console.log(gamesData);
-      this.setState({
+        this.setState({
         view: <GameContainer id={gamesData[gamesData.length -1]._id} />
       });
 

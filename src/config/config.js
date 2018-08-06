@@ -1,4 +1,4 @@
 export default {
-  server: 'localhost:3001',
-  serverGame: 'localhost:3001/games'
+  server: 'http://localhost:3001',
+  serverGame: 'http://localhost:3001/games'
 }
