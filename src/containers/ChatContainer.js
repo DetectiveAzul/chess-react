@@ -10,10 +10,11 @@ class ChatContainer extends Component {
     this.state = {
       messages: [],
       name: null,
-      msg: null
+      msg: null,
+      id: props.id
     };
     this.socket = io('localhost:3001');
-    this.socket.on('chat', this.addMessage.bind(this));
+    this.socket.on(`chat-${this.state.id}`, this.addMessage.bind(this));
 
     this.nameKeyUp = this.nameKeyUp.bind(this);
     this.msgKeyUp = this.msgKeyUp.bind(this);
@@ -45,7 +46,7 @@ class ChatContainer extends Component {
     event.target["msg-field"].value = "";
     //Make sure we don't send an empty message
     if (this.state.name && this.state.msg) {
-      const newMessage = {author: this.state.name, text: this.state.msg };
+      const newMessage = {author: this.state.name, text: this.state.msg, id: this.state.id};
       this.socket.emit('chat', newMessage);
     };
   };

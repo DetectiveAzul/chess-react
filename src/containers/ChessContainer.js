@@ -21,7 +21,7 @@ class ChessContainer extends Component {
     this.updateStatus = this.updateStatus.bind(this);
     this.chatMessage = this.chatMessage.bind(this);
     this.socket = io('localhost:3001');
-    this.socket.on('chess-received', this.changeBoard.bind(this));
+    this.socket.on(`chess-received-${this.state.id}`, this.changeBoard.bind(this));
 
   };
 
@@ -89,7 +89,7 @@ class ChessContainer extends Component {
 
   onMoveEnd() {
     console.log('onMoveEnd fired')
-    this.socket.emit('chess-moved', this.state.game.fen());
+    this.socket.emit('chess-moved', {fen:this.state.game.fen(), id:this.state.id});
     this.chatMessage();
     this.state.gameHelper.save(this.state);
   };
@@ -97,7 +97,8 @@ class ChessContainer extends Component {
   chatMessage() {
     const statusMessage = {
       author: 'System',
-      text: this.state.status
+      text: this.state.status,
+      id: this.state.id
     };
 
     this.socket.emit('chat', statusMessage);

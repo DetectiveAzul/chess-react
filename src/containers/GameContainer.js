@@ -9,7 +9,7 @@ class GameContainer extends Component {
       <div className="Game">
 
         <ChessContainer id={this.props.id} fen={this.props.fen} />
-        <ChatContainer  />
+        <ChatContainer id={this.props.id} />
 
       </div>
     );
