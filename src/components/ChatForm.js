@@ -1,21 +1,21 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class ChatForm extends Component {
+const ChatForm = (props) => {
 
-  render() {
+
     return(
-      <form className='chat-form' onSubmit={this.props.submitForm}>
+      <form className='chat-form' onSubmit={props.submitForm}>
         <input type='text'
           className='chat-input'
           placeholder='Enter your name'
-          onKeyUp={this.props.nameKeyUp}
+          onKeyUp={props.nameKeyUp}
           required />
         <input
           className='chat-input'
           type='text'
           name='msg-field'
           placeholder='Type something witty'
-          onKeyUp={this.props.msgKeyUp}
+          onKeyUp={props.msgKeyUp}
           required />
         <input
           className='chat-input'
@@ -23,7 +23,7 @@ class ChatForm extends Component {
           name='submit'
           value='Send Message' />
       </form>
-   )};
+   );
 
 };
 

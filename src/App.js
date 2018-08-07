@@ -3,6 +3,7 @@ import './app.css';
 import LobbyContainer from './containers/LobbyContainer.js';
 import GameContainer from './containers/GameContainer.js';
 import RequestHelper from './helpers/RequestHelper.js';
+import PlayerForm from './components/PlayerForm.js';
 import config from './config/config.js';
 
 class App extends Component {
@@ -20,21 +21,6 @@ class App extends Component {
     this.setState({
       view: <LobbyContainer loadGame={this.loadGame} newGame={this.newGame} />
     });
-  };
-
-
-  loadGame(id) {
-    const request = new RequestHelper(`${config.serverGame}/${id}`);
-    request.get()
-      .then((gameData) => {
-        this.setState({
-          view: <GameContainer
-            id={id}
-            fen={gameData[0].fen}
-            history={gameData[0].history}
-          />
-        });
-      });
   };
 
   newGame() {
@@ -57,9 +43,34 @@ class App extends Component {
     });
   };
 
+  loadGame(id) {
+    const request = new RequestHelper(`${config.serverGame}/${id}`);
+    request.get()
+      .then((gameData) => {
+        this.setState({
+          view: <GameContainer
+            id={id}
+            fen={gameData[0].fen}
+            history={gameData[0].history}
+          />
+        });
+      });
+  };
+
+  signIn(account, password) {
+
+  }
+
+  logIn(account, password) {
+
+  }
+
   render() {
     return (
       <div className="App">
+        <div className='header'>
+          <PlayerForm />
+        </div>
         {this.state.view}
       </div>
     );

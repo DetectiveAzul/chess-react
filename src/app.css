@@ -1,5 +1,6 @@
 .App {
   display: flex;
+  flex-direction: column;
 }
 
 .Game {
@@ -33,8 +34,20 @@
 
 .lobby-container {
   display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.game-list {
+  display: flex;
   flex-wrap: wrap;
 }
+
 .game-saved-entry {
+  margin: 15px;
+}
+
+.player-form {
+  display: flex;
   margin: 15px;
 }
