@@ -2,10 +2,10 @@ import React from 'react';
 
 const Message = ({ author, text }) => {
   return (
-    <blockquote className="message">
-      <h3>{author}:</h3>
-      <p>{text}</p>
-    </blockquote>
+    <div className='message'>
+      <p className='author'>{author}:</p>
+      <p className='text'>{text}</p>
+    </div>
   );
 };
 
