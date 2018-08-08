@@ -36,12 +36,12 @@ class App extends Component {
         history: []
       }
     }).then((gamesData) => {
-        const reversedGameData = gamesData.reverse();
+      gamesData.reverse();
         this.setState({
         view: <GameContainer
-          id={reversedGameData[0]._id}
-          fen={reversedGameData[0].fen}
-          history={reversedGameData[0].history}
+          id={gamesData[0]._id}
+          fen={gamesData[0].fen}
+          history={gamesData[0].history}
         />
       });
 

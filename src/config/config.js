@@ -5,7 +5,7 @@ export default {
 }
 
 // export default {
-//   server: 'https://server-bwnttsvenx.now.sh',
-//   serverGame: 'https://server-bwnttsvenx.now.sh/games',
-//   serverPlayer: 'https://server-bwnttsvenx.now.sh/players'
+//   server: 'https://server-asvhiytppz.now.sh',
+//   serverGame: 'https://server-asvhiytppz.now.sh/games',
+//   serverPlayer: 'https://server-asvhiytppz.now.sh/players'
 // }
