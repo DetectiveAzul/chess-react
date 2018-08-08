@@ -16,12 +16,12 @@ class PlayerHelper {
   };
 
   //Will check if player account name is already taken
-  checkAccountName(player) {
+  checkForAccount(player) {
     const request = new RequestHelper(`${config.serverPlayer}`);
     request.get()
       .then((playersData) => {
         return playersData.find((playerData) => {
-          return (playerData.account.toLowerCase() === player.account.toLowerCase())
+          return (playerData.account === player.account)
         });
       });
   };

@@ -51,3 +51,7 @@
   display: flex;
   margin: 15px;
 }
+
+.player-input {
+  margin: 5px;
+}

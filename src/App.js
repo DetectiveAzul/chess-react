@@ -4,17 +4,22 @@ import LobbyContainer from './containers/LobbyContainer.js';
 import GameContainer from './containers/GameContainer.js';
 import RequestHelper from './helpers/RequestHelper.js';
 import PlayerForm from './components/PlayerForm.js';
+import PlayerHelper from './helpers/PlayerHelper.js';
 import config from './config/config.js';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      view: null
+      view: null,
+      player: null,
+      playerHelper: new PlayerHelper()
     }
 
     this.loadGame = this.loadGame.bind(this);
     this.newGame = this.newGame.bind(this);
+    this.logIn = this.logIn.bind(this);
+    this.signIn = this.signIn.bind(this);
   }
 
   componentDidMount() {
@@ -31,12 +36,12 @@ class App extends Component {
         history: []
       }
     }).then((gamesData) => {
-        gamesData.reverse();
+        const reversedGameData = gamesData.reverse();
         this.setState({
         view: <GameContainer
-          id={gamesData[0]._id}
-          fen={gamesData[0].fen}
-          history={gamesData[0].history}
+          id={reversedGameData[0]._id}
+          fen={reversedGameData[0].fen}
+          history={reversedGameData[0].history}
         />
       });
 
@@ -57,19 +62,22 @@ class App extends Component {
       });
   };
 
-  signIn(account, password) {
+  signIn(player) {
 
-  }
+  };
 
-  logIn(account, password) {
-
+  logIn(player) {
+    console.log('Player log in:', player.account);
+    this.setState({
+      player: player
+    });
   }
 
   render() {
     return (
       <div className="App">
         <div className='header'>
-          <PlayerForm />
+          <PlayerForm signIn = {this.signIn} logIn = {this.logIn} />
         </div>
         {this.state.view}
       </div>
