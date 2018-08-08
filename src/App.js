@@ -91,7 +91,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className='header'>
-          <PlayerForm signIn = {this.signIn} logIn = {this.logIn} />
+          {/* <PlayerForm signIn = {this.signIn} logIn = {this.logIn} /> */}
         </div>
         {this.state.view}
       </div>

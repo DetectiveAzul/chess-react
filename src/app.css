@@ -1,4 +1,4 @@
-.App {
+/* .App {
   display: flex;
   flex-direction: column;
 }
@@ -10,6 +10,14 @@
 
 .chess-container, .chat-container {
   margin: 10px;
+}
+
+.system-chat-container {
+
+}
+
+.system-message {
+
 }
 
 .chat-container {
@@ -55,4 +63,4 @@
 
 .player-input {
   margin: 5px;
-}
+} */

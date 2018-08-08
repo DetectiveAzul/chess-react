@@ -5,6 +5,8 @@ import Chess from 'chess.js';
 import io from 'socket.io-client';
 import config from '../config/config.js';
 import ChessBoardConfigMenu from './ChessBoardConfigMenu.js';
+import SystemChatContainer from '../components/SystemChatContainer.js';
+
 
 
 
@@ -40,7 +42,7 @@ class ChessContainer extends Component {
   };
 
   componentDidMount() {
-    this.chatMessage();
+    this.chatMessage(`Player joined - ${this.state.status}`);
   };
 
   //Events
@@ -55,8 +57,10 @@ class ChessContainer extends Component {
 
     if (move === null) return 'snapback';
 
-    this.updateHistory()
-    this.updateStatus()
+    this.updateHistory();
+    this.updateStatus();
+    this.chatMessage(`Moved from ${square} to ${toSquare}`);
+    this.chatMessage(this.state.status);
   };
 
   updateHistory() {
@@ -110,17 +114,18 @@ class ChessContainer extends Component {
       id:this.state.id,
       history: this.state.history
     });
-    this.chatMessage();
   };
 
-  chatMessage() {
+  chatMessage(message) {
+    const date = new Date();
+    const hour = date.getHours();
+    const minutes = date.getMinutes();
     const statusMessage = {
-      author: 'System',
-      text: this.state.status,
+      text: `${hour}:${minutes}: ${message}`,
       id: this.state.id
     };
 
-    this.socket.emit('chat', statusMessage);
+    this.socket.emit('system', statusMessage);
   };
 
 
@@ -184,6 +189,7 @@ class ChessContainer extends Component {
           undoMovement={this.undoMovement}
           randomMovement={this.randomMovement}
         />
+        <SystemChatContainer id={this.props.id} />
       </div>
     );
   }
