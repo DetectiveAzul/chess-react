@@ -15,14 +15,18 @@ class PlayerHelper {
     };
   };
 
-  //Will check if player account name is already taken
   checkForAccount(player) {
     const request = new RequestHelper(`${config.serverPlayer}`);
     request.get()
       .then((playersData) => {
-        return playersData.find((playerData) => {
-          return (playerData.account === player.account)
-        });
+        if (playersData.find((playerData) => {
+          return playerData.account === player.account
+        })) {
+          alert(`Account ${player.account} already exists`);
+        } else {
+          this.createAccount(player);
+          alert(`Account ${player.account} successfully created!`);
+        };
       });
   };
 

@@ -4,6 +4,7 @@ class Player {
     this.password = details.accountPassword.value;
     this.games = games;
   }
+
 }
 
 export default Player;

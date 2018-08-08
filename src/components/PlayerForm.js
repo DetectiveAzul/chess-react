@@ -33,27 +33,29 @@ const PlayerForm = (props) => {
           placeholder='Password'
           required
         />
-        <label className='player-input'>Log In</label>
-        <input
-          className='player-input'
-          type='radio'
-          name='checkIn'
-          value='login'
-          defaultChecked
-        />
-        <label className='player-input'>Sign In</label>
-        <input
-          className='player-input'
-          type='radio'
-          name='checkIn'
-          value='signin'
-        />
-        <input
-          className='player-input'
-          type='submit'
-          name='submit'
-          value='Submit'
-        />
+        <div className='login-input'>
+          <label className='player-input'>Log In</label>
+          <input
+            className='player-input'
+            type='radio'
+            name='checkIn'
+            value='login'
+            defaultChecked
+          />
+          <label className='player-input'>Sign In</label>
+          <input
+            className='player-input'
+            type='radio'
+            name='checkIn'
+            value='signin'
+          />
+          <input
+            className='player-input'
+            type='submit'
+            name='submit'
+            value='Submit'
+          />
+        </div>
       </form>
     );
 

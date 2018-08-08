@@ -7,8 +7,6 @@ RequestHelper.prototype.get = function () {
     .then((response) => response.json());
 };
 
-//TODO: Adapt to my API
-
 RequestHelper.prototype.delete = function (id) {
   return fetch(`${this.url}/${id}`, {
     method: 'DELETE'

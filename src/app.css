@@ -50,6 +50,7 @@
 .player-form {
   display: flex;
   margin: 15px;
+  flex-wrap: wrap;
 }
 
 .player-input {

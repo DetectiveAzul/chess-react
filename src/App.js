@@ -3,6 +3,7 @@ import './app.css';
 import LobbyContainer from './containers/LobbyContainer.js';
 import GameContainer from './containers/GameContainer.js';
 import RequestHelper from './helpers/RequestHelper.js';
+import Player from './models/Player.js';
 import PlayerForm from './components/PlayerForm.js';
 import PlayerHelper from './helpers/PlayerHelper.js';
 import config from './config/config.js';
@@ -28,6 +29,7 @@ class App extends Component {
     });
   };
 
+  //Game creation functions
   newGame() {
     const request = new RequestHelper(`${config.serverGame}`);
     request.post({
@@ -62,17 +64,28 @@ class App extends Component {
       });
   };
 
+  //player auth methods
   signIn(player) {
-
+    this.state.playerHelper.checkForAccount(player);
   };
 
-  logIn(player) {
-    console.log('Player log in:', player.account);
-    this.setState({
-      player: player
-    });
-  }
 
+  logIn(player) {
+    const request = new RequestHelper(`${config.serverPlayer}/${player.account}`);
+    request.get()
+      .then((playerData) => {
+        if (playerData[0] && playerData[0].password === player.password) {
+          this.setState({
+            player: playerData[0]
+          });
+        } else {
+          alert('Password or Account are incorrect');
+        };
+      });
+  };
+
+
+  //render method
   render() {
     return (
       <div className="App">
