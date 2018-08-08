@@ -78,6 +78,7 @@ class App extends Component {
           this.setState({
             player: playerData[0]
           });
+          alert(`Welcome back ${player.account}`);
         } else {
           alert('Password or Account are incorrect');
         };
