@@ -1,0 +1,14 @@
+.lobby-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.game-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.game-saved-entry {
+  margin: 15px;
+}

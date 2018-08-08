@@ -2,9 +2,9 @@ import React from 'react';
 
 const SystemMessage = ({ author, text }) => {
   return (
-    <blockquote className="system-message">
+    <div className="system-message">
       <p>{text}</p>
-    </blockquote>
+    </div>
   );
 };
 

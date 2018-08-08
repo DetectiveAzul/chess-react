@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ChatContainer from '../components/ChatContainer.js';
 import ChessContainer from '../components/ChessContainer.js';
+import './styles/GameContainer.css';
 
 class GameContainer extends Component {
 

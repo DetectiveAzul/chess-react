@@ -1,0 +1,76 @@
+.Game {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.chess-container  {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 20px;
+  min-width: 350px;
+}
+
+
+.chess-config-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.config-input {
+  margin-right: 2.5px;
+  flex: 1;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  margin-top: 0px;
+  margin-right: 20px;
+  margin-bottom: 0px;
+  flex: 1;
+  min-width: 350px;
+  min-height: 400px;
+  max-height: 95vh;
+}
+
+.chat-form {
+  display: flex;
+  margin: 5px;
+  height: 23px;
+}
+
+.chat-input {
+  flex: 1;
+  margin: 2.5px;
+}
+
+.messages-container {
+  margin: 10px;
+  width: 95%;
+  overflow: scroll;
+  flex: 2.5;
+  margin: 15px;
+  margin-right: 15px;
+}
+
+.system-chat-container {
+  margin: 15px;
+  margin-top: 4px;
+  width: 95%;
+  flex: 1;
+}
+
+.system-messages-container {
+  max-height: 185px;
+  overflow: scroll;
+}
+
+.system-message {
+
+}

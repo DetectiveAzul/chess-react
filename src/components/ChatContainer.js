@@ -3,6 +3,8 @@ import ChatForm from './ChatForm.js';
 import Message from './Message.js';
 import io from 'socket.io-client';
 import config from '../config/config.js';
+import SystemChatContainer from '../components/SystemChatContainer.js';
+
 
 class ChatContainer extends Component {
   constructor(props) {
@@ -68,6 +70,7 @@ class ChatContainer extends Component {
       <div className = 'messages-container'>
         {messages}
       </div>
+      <SystemChatContainer id={this.props.id} />
     </div>
   )};
 

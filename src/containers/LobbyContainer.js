@@ -4,6 +4,7 @@ import GameSavedEntry from '../components/GameSavedEntry.js';
 import NewGameEntry from '../components/NewGameEntry.js';
 import DeleteGameEntry from '../components/DeleteGameEntry.js';
 import config from '../config/config.js';
+import './styles/LobbyContainer.css';
 
 
 class LobbyContainer extends Component {

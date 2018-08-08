@@ -5,11 +5,6 @@ import Chess from 'chess.js';
 import io from 'socket.io-client';
 import config from '../config/config.js';
 import ChessBoardConfigMenu from './ChessBoardConfigMenu.js';
-import SystemChatContainer from '../components/SystemChatContainer.js';
-
-
-
-
 
 class ChessContainer extends Component {
   constructor(props) {
@@ -179,6 +174,7 @@ class ChessContainer extends Component {
     return(
       <div className='chess-container'>
         <Chessboard
+          width='100%'
           fen={this.state.fen}
           orientation={this.state.orientation}
           onDrop={this.onDrop}
@@ -189,7 +185,6 @@ class ChessContainer extends Component {
           undoMovement={this.undoMovement}
           randomMovement={this.randomMovement}
         />
-        <SystemChatContainer id={this.props.id} />
       </div>
     );
   }
