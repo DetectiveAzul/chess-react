@@ -1,14 +1,30 @@
 .lobby-container {
-  display: flex;
+  /* display: flex;
   width: 100%;
-  flex-direction: column;
+  flex-direction: column; */
 }
 
 .game-list {
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
 }
 
 .game-saved-entry {
-  margin: 15px;
+  /* margin: 15px; */
+}
+
+.clickable {
+
+}
+
+.entry-id {
+
+}
+
+.new-game {
+
+}
+
+.delete-game {
+  
 }

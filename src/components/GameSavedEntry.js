@@ -9,12 +9,12 @@ const GameSavedEntry = (props) => {
 
   return(
     <div className='game-saved-entry' >
-      <label>{props.id}</label>
+      <label className='entry-id'>{props.id}</label>
       <div className='clickable' onClick={handleClick}>
         <Chessboard
           fen={props.fen}
           isDraggable={false}
-          width={200}
+          width={'100%'}
           showCoordinates={false}
         />
       </div>

@@ -9,11 +9,11 @@ const NewGameEntry = (props) => {
 
   return(
     <div className='game-saved-entry' onClick={handleClick}>
-      <label>New Game</label>
+      <label className='new-game'>New Game</label>
       <Chessboard
         fen='empty'
         isDraggable={false}
-        width={200}
+        width={'100%'}
         showCoordinates={false}
       />
     </div>
