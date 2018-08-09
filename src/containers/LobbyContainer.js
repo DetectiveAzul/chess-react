@@ -36,7 +36,6 @@ class LobbyContainer extends Component {
              />
           }
         });
-        games.reverse();
         this.setState({games: games});
       });
   };
