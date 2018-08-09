@@ -5,6 +5,8 @@ import Chess from 'chess.js';
 import io from 'socket.io-client';
 import config from '../config/config.js';
 import ChessBoardConfigMenu from './ChessBoardConfigMenu.js';
+import ReactNotifications from 'react-browser-notifications';
+
 
 class ChessContainer extends Component {
   constructor(props) {
@@ -30,6 +32,9 @@ class ChessContainer extends Component {
     this.swapOrientation = this.swapOrientation.bind(this);
     this.undoMovement = this.undoMovement.bind(this);
     this.randomMovement = this.randomMovement.bind(this);
+    //Notifications
+    this.showNotifications = this.showNotifications.bind(this);
+
 
   };
 
@@ -126,13 +131,13 @@ class ChessContainer extends Component {
 
 
   changeBoard(chessObject) {
+    this.showNotifications();
     this.setState({
       fen: chessObject.fen,
       history: chessObject.history
     });
     this.state.game.load(chessObject.fen);
     this.state.gameHelper.save(this.state);
-
   };
 
   ///Config menu functions
@@ -170,9 +175,35 @@ class ChessContainer extends Component {
     this.onMoveEnd();
   }
 
+  //Notifications
+  showNotifications() {
+    // If the Notifications API is supported by the browser
+    // then show the notification
+    if(this.n.supported()) this.n.show();
+  }
+
+  notificationClick(event) {
+    // Do something here such as
+    // console.log("Notification Clicked") OR
+    // window.focus() OR
+    // window.open("http://www.google.com")
+    console.log('Notification clicked!');
+    // Lastly, Close the notification
+    this.n.close(event.target.tag);
+  }
+
   render() {
     return(
       <div className='chess-container'>
+        <ReactNotifications
+         onRef={ref => (this.n = ref)} // Required
+         title={this.state.status} // Required
+         body=" "
+         icon="devices-logo.png"
+         tag="abcdef"
+         timeout="2000"
+         onClick={event => this.notificationClick(event)}
+       />
         <Chessboard
           width='100%'
           fen={this.state.fen}
