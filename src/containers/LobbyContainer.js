@@ -50,9 +50,11 @@ class LobbyContainer extends Component {
   render() {
     return(
       <div className='lobby-container'>
-        <div className='game-list'>
+        <div className='lobby-menu'>
           <NewGameEntry newGame = {this.props.newGame} />
           <DeleteGameEntry deleteGame = {this.deleteGame} />
+        </div>
+        <div className='game-list'>
           {this.state.games}
         </div>
       </div>

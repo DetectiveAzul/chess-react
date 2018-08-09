@@ -9,7 +9,7 @@ const GameSavedEntry = (props) => {
 
   return(
     <div className='game-saved-entry' >
-      <label className='entry-id'>{props.id}</label>
+      <label className='entry-id'>ID: {props.id}</label>
       <div className='clickable' onClick={handleClick}>
         <Chessboard
           fen={props.fen}

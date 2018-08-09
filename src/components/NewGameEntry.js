@@ -8,14 +8,16 @@ const NewGameEntry = (props) => {
   }
 
   return(
-    <div className='game-saved-entry' onClick={handleClick}>
+    <div className='menu-entry'>
       <label className='new-game'>New Game</label>
-      <Chessboard
-        fen='empty'
-        isDraggable={false}
-        width={'100%'}
-        showCoordinates={false}
-      />
+      <div className='clickable' onClick={handleClick} >
+        <Chessboard
+          fen='empty'
+          isDraggable={false}
+          width={'100%'}
+          showCoordinates={false}
+        />
+      </div>
     </div>
   );
 }
