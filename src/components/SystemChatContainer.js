@@ -15,7 +15,31 @@ class SystemChatContainer extends Component {
     this.socket.on(`system-${this.state.id}`, this.addMessage.bind(this));
   };
 
+  getTime() {
+    const date = new Date();
+    const hour = this.getHour(date);
+    const minutes = this.getMinutes(date);
+    return (`[${hour}:${minutes}] `);
+  }
+
+  getHour(date) {
+    return this.addZero(date.getHours());
+
+  }
+
+  getMinutes(date) {
+    return this.addZero(date.getMinutes());
+  }
+
+  addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+  }
+
   addMessage(message) {
+    message.text = this.getTime() + message.text;
     const messages = this.state.messages;
     const newMessages = [message, ...messages];
     this.setState({

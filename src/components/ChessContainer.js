@@ -112,11 +112,8 @@ class ChessContainer extends Component {
   };
 
   chatMessage(message) {
-    const date = new Date();
-    const hour = date.getHours();
-    const minutes = date.getMinutes();
     const statusMessage = {
-      text: `${hour}:${minutes}: ${message}`,
+      text: `${message}`,
       id: this.state.id
     };
 
