@@ -9,7 +9,8 @@ class GameHelper {
     return {
       gameData: {
         fen: state.game.fen(),
-        history: state.history
+        history: state.history,
+        finished: state.finished
       }
     };
   };

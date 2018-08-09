@@ -35,7 +35,8 @@ class App extends Component {
     request.post({
       gameData: {
         fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-        history: []
+        history: [],
+        finished: false
       }
     }).then((gamesData) => {
       gamesData.reverse();
@@ -44,6 +45,7 @@ class App extends Component {
           id={gamesData[0]._id}
           fen={gamesData[0].fen}
           history={gamesData[0].history}
+          finished='false'
           // id={gamesData[gamesData.length -1]._id}
           // fen={gamesData[gamesData.length -1].fen}
           // history={gamesData[gamesData.length -1].history}
@@ -62,6 +64,7 @@ class App extends Component {
             id={id}
             fen={gameData[0].fen}
             history={gameData[0].history}
+            finished={gameData[0].finished}
           />
         });
       });

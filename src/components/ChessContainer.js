@@ -16,7 +16,8 @@ class ChessContainer extends Component {
       history: props.history,
       status: null,
       gameHelper: new GameHelper(),
-      id: props.id
+      id: props.id,
+      finished: false
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -79,11 +80,13 @@ class ChessContainer extends Component {
     //Checkmate?
     if (this.state.game.in_checkmate() === true) {
       status = 'Game Over, ' + playerTurn + ' is in checkmate.';
+      this.setState({finished: true});
     }
 
     //Draw
     else if (this.state.game.in_draw() === true) {
       status = 'Game Over, it\'s a draw'
+      this.setState({finished: true});
     }
 
     //Game still on
@@ -176,6 +179,7 @@ class ChessContainer extends Component {
           orientation={this.state.orientation}
           onDrop={this.onDrop}
           onMoveEnd={this.onMoveEnd}
+          isDraggable={!this.state.finished}
         />
         <ChessBoardConfigMenu
           swapOrientation={this.swapOrientation}
