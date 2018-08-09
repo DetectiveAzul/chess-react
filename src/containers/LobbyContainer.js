@@ -27,12 +27,14 @@ class LobbyContainer extends Component {
     request.get()
       .then( (gamesData) => {
         const games = gamesData.map((gameData, index) => {
-          return <GameSavedEntry
-            key={index}
-            id={gameData._id}
-            fen={gameData.fen}
-            loadGame = {this.props.loadGame}
-           />
+          if (!gameData.finished) {
+            return <GameSavedEntry
+              key={index}
+              id={gameData._id}
+              fen={gameData.fen}
+              loadGame = {this.props.loadGame}
+             />
+          }
         });
         games.reverse();
         this.setState({games: games});
