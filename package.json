@@ -5,6 +5,7 @@
   "dependencies": {
     "chess.js": "^0.10.2",
     "react": "^16.4.2",
+    "react-browser-notifications": "^1.0.14",
     "react-chessboardjs": "^0.5.3",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.4",
