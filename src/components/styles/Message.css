@@ -1,0 +1,25 @@
+.message {
+  /* border: thin green solid; */
+  display: flex;
+  height: 30px;
+  width: 98%;
+  align-items: center;
+}
+
+.author {
+  /* border: thin purple solid; */
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.text {
+  /* border: thin red solid; */
+  margin-left: 5px;
+  font-size: 15px;
+  overflow: auto;
+}
+
+.system-message p {
+  font-size: 10px;
+  
+}

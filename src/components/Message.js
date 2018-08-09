@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/Message.css';
 
 const Message = ({ author, text }) => {
   return (

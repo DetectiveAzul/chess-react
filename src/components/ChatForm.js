@@ -9,6 +9,7 @@ const ChatForm = (props) => {
           className='chat-input'
           placeholder='Name'
           onKeyUp={props.nameKeyUp}
+          maxlength='10'
           required />
         <input
           className='chat-input'
@@ -16,6 +17,7 @@ const ChatForm = (props) => {
           name='msg-field'
           placeholder='Message'
           onKeyUp={props.msgKeyUp}
+          maxlength='60'
           required />
         <input
           className='chat-input'
