@@ -1,7 +1,5 @@
-
-
 .Game {
-  border: thin purple solid;
+  /* border: thin purple solid; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -12,7 +10,7 @@
 }
 
 .chess-container  {
-  border: thin red solid;
+  /* border: thin red solid; */
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -32,7 +30,7 @@
 }
 
 .chat-container {
-  border:thin red solid;
+  /* border:thin red solid; */
   display: flex;
   flex-direction: column;
   margin-left: 20px;
@@ -57,7 +55,7 @@
 }
 
 .messages-container {
-  border: thin yellow solid;
+  /* border: thin yellow solid; */
   margin: 10px;
   overflow: scroll;
   flex: 2;
@@ -67,7 +65,7 @@
 }
 
 .system-chat-container {
-  border: thin red solid;
+  /* border: thin red solid; */
   margin: 15px;
   margin-top: 4px;
   width: 95%;
@@ -76,7 +74,7 @@
 }
 
 .system-messages-container {
-  border: thin yellow solid;
+  /* border: thin yellow solid; */
   height: 95%;
   overflow: scroll;
   background-color: white;
