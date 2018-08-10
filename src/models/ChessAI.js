@@ -112,8 +112,8 @@ class ChessAI {
         return bestMove;
     } else {
         let bestMove = 9999;
-        for (var i = 0; i < newGameMoves.length; i++) {
-            game.move(newGameMoves[i]);
+        for (var j = 0; j < newGameMoves.length; j++) {
+            game.move(newGameMoves[j]);
             bestMove = Math.min(bestMove, this.minimax(depth - 1, game, alpha, beta, !isMaximisingPlayer));
             game.undo();
             beta = Math.min(beta, bestMove);
