@@ -10,8 +10,8 @@ const ChessBoardConfigMenu = (props) => {
         >Undo Move</button>
       <button
         className='config-input'
-        onClick={props.randomMovement}
-        >Random Move</button>
+        onClick={props.setAi}
+        >Ai: {props.aiState}</button>
       <button
         className='config-input'
         onClick={props.swapOrientation}

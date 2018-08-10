@@ -20,7 +20,8 @@ class ChessContainer extends Component {
       status: null,
       gameHelper: new GameHelper(),
       id: props.id,
-      finished: props.finished
+      finished: props.finished,
+      ai: false
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -32,7 +33,7 @@ class ChessContainer extends Component {
     //Config functions
     this.swapOrientation = this.swapOrientation.bind(this);
     this.undoMovement = this.undoMovement.bind(this);
-    this.randomMovement = this.randomMovement.bind(this);
+    this.setAi = this.setAi.bind(this);
     //Notifications
     this.showNotifications = this.showNotifications.bind(this);
 
@@ -139,6 +140,8 @@ class ChessContainer extends Component {
     });
     this.state.game.load(chessObject.fen);
     this.state.gameHelper.save(this.state);
+    //Check if AI is true and trigger its movement
+    if (this.state.ai && this.state.game.turn() === 'b') this.aiMovement();
   };
 
   ///Config menu functions
@@ -167,7 +170,15 @@ class ChessContainer extends Component {
     };
   };
 
-  randomMovement() {
+  setAi() {
+    const newAi = !this.state.ai
+    console.log(newAi);
+    this.setState({
+      ai: newAi
+    });
+  };
+
+  aiMovement() {
     const AI = new ChessAI();
     this.state.game.move(AI.minimaxRoot(2, this.state.game, true));
     // const possibleMoves = this.state.game.moves();
@@ -218,7 +229,8 @@ class ChessContainer extends Component {
         <ChessBoardConfigMenu
           swapOrientation={this.swapOrientation}
           undoMovement={this.undoMovement}
-          randomMovement={this.randomMovement}
+          setAi={this.setAi}
+          aiState={`${this.state.ai}`}
         />
       </div>
     );
