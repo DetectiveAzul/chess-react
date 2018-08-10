@@ -3,9 +3,9 @@ import './app.css';
 import LobbyContainer from './containers/LobbyContainer.js';
 import GameContainer from './containers/GameContainer.js';
 import RequestHelper from './helpers/RequestHelper.js';
-import Player from './models/Player.js';
-import PlayerForm from './components/PlayerForm.js';
-import PlayerHelper from './helpers/PlayerHelper.js';
+// import Player from './models/Player.js';
+// import PlayerForm from './components/PlayerForm.js';
+// import PlayerHelper from './helpers/PlayerHelper.js';
 import config from './config/config.js';
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
     this.state = {
       view: null,
       player: null,
-      playerHelper: new PlayerHelper()
+      // playerHelper: new PlayerHelper()
     }
 
     this.loadGame = this.loadGame.bind(this);

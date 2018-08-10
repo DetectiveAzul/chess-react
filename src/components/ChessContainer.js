@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import GameHelper from '../helpers/GameHelper.js';
 import Chessboard from 'react-chessboardjs';
-import Chess from 'chess.js';
+import Chess from '../libraries/chess.js/chess.js';
 import io from 'socket.io-client';
 import config from '../config/config.js';
 import ChessBoardConfigMenu from './ChessBoardConfigMenu.js';
 import ReactNotifications from 'react-browser-notifications';
+import ChessAI from '../models/ChessAI.js';
 
 
 class ChessContainer extends Component {
@@ -167,9 +168,11 @@ class ChessContainer extends Component {
   };
 
   randomMovement() {
-    const possibleMoves = this.state.game.moves();
-    const randomIndex = Math.floor(Math.random() * possibleMoves.length);
-    this.state.game.move(possibleMoves[randomIndex]);
+    const AI = new ChessAI();
+    this.state.game.move(AI.minimaxRoot(2, this.state.game, true));
+    // const possibleMoves = this.state.game.moves();
+    // const randomIndex = Math.floor(Math.random() * possibleMoves.length);
+    // this.state.game.move(possibleMoves[randomIndex]);
     this.updateHistory();
     this.updateStatus();
     this.onMoveEnd();
