@@ -22,7 +22,7 @@ class ChessContainer extends Component {
       id: props.id,
       finished: props.finished,
       ai: props.ai,
-      aiDifficulty: props.aiDifficulty
+      aiDifficulty: parseInt(props.aiDifficulty)
     };
 
     this.onDrop = this.onDrop.bind(this);

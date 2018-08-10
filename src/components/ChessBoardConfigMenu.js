@@ -17,7 +17,7 @@ const ChessBoardConfigMenu = (props) => {
         onClick={props.setAi}
         >Ai: {props.aiState}
       </button>
-      <select defaultValue={props.aiDifficulty} onChange={handleChange}>
+      <select defaultValue={`${props.aiDifficulty}`} onChange={handleChange}>
         <option value='1'>Easy</option>
         <option value='2'>Medium</option>
         <option value='3'>Hard</option>

@@ -49,6 +49,7 @@ class App extends Component {
           history={gamesData[0].history}
           finished={false}
           ai={false}
+          aiDifficulty='1'
           // id={gamesData[gamesData.length -1]._id}
           // fen={gamesData[gamesData.length -1].fen}
           // history={gamesData[gamesData.length -1].history}
