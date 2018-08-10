@@ -11,7 +11,8 @@ class GameHelper {
         fen: state.game.fen(),
         history: state.history,
         finished: state.finished,
-        ai: state.ai
+        ai: state.ai,
+        aiDifficulty: state.aiDifficulty
       }
     };
   };

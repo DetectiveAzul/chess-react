@@ -37,7 +37,8 @@ class App extends Component {
         fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
         history: [],
         finished: false,
-        ai: false
+        ai: false,
+        aiDifficulty: 1
       }
     }).then((gamesData) => {
       gamesData.reverse();
@@ -68,6 +69,7 @@ class App extends Component {
             history={gameData[0].history}
             finished={gameData[0].finished}
             ai={gameData[0].ai}
+            aiDifficulty={gameData[0].aiDifficulty}
           />
         });
       });

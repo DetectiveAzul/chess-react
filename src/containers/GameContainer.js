@@ -12,6 +12,7 @@ const GameContainer = (props) => {
           fen={props.fen}
           history={props.history}
           ai={props.ai}
+          aiDifficulty={props.aiDifficulty}
           finished={props.finished}
         />
         <ChatContainer id={props.id} />

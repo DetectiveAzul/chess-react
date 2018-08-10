@@ -21,7 +21,8 @@ class ChessContainer extends Component {
       gameHelper: new GameHelper(),
       id: props.id,
       finished: props.finished,
-      ai: props.ai
+      ai: props.ai,
+      aiDifficulty: props.aiDifficulty
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -34,6 +35,7 @@ class ChessContainer extends Component {
     this.swapOrientation = this.swapOrientation.bind(this);
     this.undoMovement = this.undoMovement.bind(this);
     this.setAi = this.setAi.bind(this);
+    this.setAiDifficulty = this.setAiDifficulty.bind(this);
     //Notifications
     this.showNotifications = this.showNotifications.bind(this);
 
@@ -179,9 +181,16 @@ class ChessContainer extends Component {
     });
   };
 
+  setAiDifficulty(number) {
+    this.setState({
+      aiDifficulty: parseInt(number)
+    });
+  };
+
   aiMovement() {
     const AI = new ChessAI();
-    const aiMove = AI.minimaxRoot(2, this.state.game, true);
+    const aiMove = AI.minimaxRoot(this.state.aiDifficulty, this.state.game, true);
+    console.log('Deep AI Level:', this.state.aiDifficulty);
     this.state.game.move(aiMove);
     this.updateHistory();
     this.updateStatus();
@@ -233,6 +242,8 @@ class ChessContainer extends Component {
           undoMovement={this.undoMovement}
           setAi={this.setAi}
           aiState={`${this.state.ai}`}
+          setAiDifficulty={this.setAiDifficulty}
+          aiDifficulty={this.state.aiDifficulty}
         />
       </div>
     );
