@@ -1,24 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ChatContainer from '../components/ChatContainer.js';
 import ChessContainer from '../components/ChessContainer.js';
 import './styles/GameContainer.css';
 
-class GameContainer extends Component {
+const GameContainer = (props) => {
 
-  render() {
     return (
       <div className="Game">
         <ChessContainer
-          id={this.props.id}
-          fen={this.props.fen}
-          history={this.props.history}
-          ai={this.props.ai}
-          finished={this.props.finished}
+          id={props.id}
+          fen={props.fen}
+          history={props.history}
+          ai={props.ai}
+          finished={props.finished}
         />
-        <ChatContainer id={this.props.id} />
+        <ChatContainer id={props.id} />
       </div>
     );
-  }
+
 }
 
 export default GameContainer;
