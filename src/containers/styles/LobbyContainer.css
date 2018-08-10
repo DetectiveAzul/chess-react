@@ -1,7 +1,7 @@
 .lobby-container {
   /* border: thin purple solid; */
   display: flex;
-  height: 100vh;
+  height: 100%;
   flex-wrap: wrap;
 }
 
@@ -42,4 +42,5 @@
 .entry-id, .new-game, .delete-game {
   /* border: red thin solid; */
   text-align: center;
+  overflow: scroll;
 }
