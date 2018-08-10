@@ -12,6 +12,8 @@ class GameContainer extends Component {
           id={this.props.id}
           fen={this.props.fen}
           history={this.props.history}
+          ai={this.props.ai}
+          finished={this.props.finished}
         />
         <ChatContainer id={this.props.id} />
       </div>

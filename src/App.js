@@ -36,7 +36,8 @@ class App extends Component {
       gameData: {
         fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
         history: [],
-        finished: false
+        finished: false,
+        ai: false
       }
     }).then((gamesData) => {
       gamesData.reverse();
@@ -45,7 +46,8 @@ class App extends Component {
           id={gamesData[0]._id}
           fen={gamesData[0].fen}
           history={gamesData[0].history}
-          finished='false'
+          finished={false}
+          ai={false}
           // id={gamesData[gamesData.length -1]._id}
           // fen={gamesData[gamesData.length -1].fen}
           // history={gamesData[gamesData.length -1].history}
@@ -65,6 +67,7 @@ class App extends Component {
             fen={gameData[0].fen}
             history={gameData[0].history}
             finished={gameData[0].finished}
+            ai={gameData[0].ai}
           />
         });
       });

@@ -21,7 +21,7 @@ class ChessContainer extends Component {
       gameHelper: new GameHelper(),
       id: props.id,
       finished: props.finished,
-      ai: false
+      ai: props.ai
     };
 
     this.onDrop = this.onDrop.bind(this);
