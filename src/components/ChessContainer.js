@@ -64,6 +64,7 @@ class ChessContainer extends Component {
     this.updateStatus();
     this.chatMessage(`Moved from ${square} to ${toSquare}`);
     this.chatMessage(this.state.status);
+    if (!this.state.ai) this.showNotifications();
   };
 
   updateHistory() {
@@ -133,7 +134,6 @@ class ChessContainer extends Component {
 
 
   changeBoard(chessObject) {
-    this.showNotifications();
     this.setState({
       fen: chessObject.fen,
       history: chessObject.history
@@ -168,6 +168,7 @@ class ChessContainer extends Component {
       this.state.game.load(previousMovement);
       this.onMoveEnd();
     };
+    this.chatMessage('Move undone');
   };
 
   setAi() {
