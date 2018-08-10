@@ -161,6 +161,9 @@ class ChessContainer extends Component {
   };
 
   getPreviousMovement() {
+    if (this.state.ai) {
+      this.state.history.pop();
+    }
     return this.state.history.pop();
   };
 
