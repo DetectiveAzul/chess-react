@@ -180,13 +180,14 @@ class ChessContainer extends Component {
 
   aiMovement() {
     const AI = new ChessAI();
-    this.state.game.move(AI.minimaxRoot(2, this.state.game, true));
-    // const possibleMoves = this.state.game.moves();
-    // const randomIndex = Math.floor(Math.random() * possibleMoves.length);
-    // this.state.game.move(possibleMoves[randomIndex]);
+    const aiMove = AI.minimaxRoot(2, this.state.game, true);
+    this.state.game.move(aiMove);
     this.updateHistory();
     this.updateStatus();
     this.onMoveEnd();
+    this.chatMessage(`CPU: ${aiMove}`);
+    this.chatMessage(this.state.status);
+
   }
 
   //Notifications
