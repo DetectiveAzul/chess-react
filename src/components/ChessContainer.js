@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
+//Helpers
 import GameHelper from '../helpers/GameHelper.js';
+import config from '../config/config.js';
+
+//API's
 import Chessboard from 'react-chessboardjs';
 import Chess from '../libraries/chess.js/chess.js';
 import io from 'socket.io-client';
-import config from '../config/config.js';
-import ChessBoardConfigMenu from './ChessBoardConfigMenu.js';
 import ReactNotifications from 'react-browser-notifications';
-import ChessAI from '../models/ChessAI.js';
 
+//Components and Models
+import ChessBoardConfigMenu from './ChessBoardConfigMenu.js';
+import ChessAI from '../models/ChessAI.js';
 
 class ChessContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      fen: props.fen,
-      orientation: 'w',
-      game: new Chess(props.fen),
-      history: props.history,
-      status: null,
-      gameHelper: new GameHelper(),
       id: props.id,
-      finished: props.finished,
+      game: new Chess(props.fen),
+      gameHelper: new GameHelper(),
+      fen: props.fen,
+      status: null,
+      history: props.history,
+      orientation: 'w',
       ai: props.ai,
-      aiDifficulty: parseInt(props.aiDifficulty)
+      aiDifficulty: parseInt(props.aiDifficulty),
+      finished: props.finished,
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -39,7 +43,6 @@ class ChessContainer extends Component {
     //Notifications
     this.showNotifications = this.showNotifications.bind(this);
 
-
   };
 
   componentWillMount() {
@@ -50,8 +53,7 @@ class ChessContainer extends Component {
     this.chatMessage(`Player joined - ${this.state.status}`);
   };
 
-  //Events
-
+  //Chessboard Events
   onDrop(square,toSquare) {
     console.log('onDrop fired', square, toSquare);
     let move = this.state.game.move({
@@ -62,12 +64,29 @@ class ChessContainer extends Component {
 
     if (move === null) return 'snapback';
 
+    this.update(square, toSquare);
+  };
+
+  onMoveEnd() {
+    console.log('onMoveEnd fired')
+    this.socket.emit('chess-moved', {
+      fen:this.state.game.fen(),
+      id:this.state.id,
+      history: this.state.history
+    });
+  };
+
+  //Updates
+
+  update() {
     this.updateHistory();
     this.updateStatus();
     this.chatMessage(`Moved from ${square} to ${toSquare}`);
     this.chatMessage(this.state.status);
     if (!this.state.ai) this.showNotifications();
+
   };
+
 
   updateHistory() {
     const oldBoard = this.state.fen;
@@ -77,7 +96,7 @@ class ChessContainer extends Component {
       history: newHistory
     });
 
-  }
+  };
 
   updateStatus() {
     let status = '';
@@ -114,16 +133,7 @@ class ChessContainer extends Component {
     });
   };
 
-
-  onMoveEnd() {
-    console.log('onMoveEnd fired')
-    this.socket.emit('chess-moved', {
-      fen:this.state.game.fen(),
-      id:this.state.id,
-      history: this.state.history
-    });
-  };
-
+  //Feedback
   chatMessage(message) {
     const statusMessage = {
       text: `${message}`,
@@ -140,6 +150,9 @@ class ChessContainer extends Component {
       fen: chessObject.fen,
       history: chessObject.history
     });
+
+    // If you're in other client, this will update your game to be synchronized
+    // with the other player, and then will save the game on to the server
     this.state.game.load(chessObject.fen);
     this.state.gameHelper.save(this.state);
     //Check if AI is true and trigger its movement
@@ -190,35 +203,36 @@ class ChessContainer extends Component {
     });
   };
 
+  //Flow of the game if AI moves
   aiMovement() {
     const AI = new ChessAI();
     const aiMove = AI.minimaxRoot(this.state.aiDifficulty, this.state.game, true);
     console.log('Deep AI Level:', this.state.aiDifficulty);
     this.state.game.move(aiMove);
+    //Update AI
+    this.aiUpdate(aiMove);
+  };
+
+  aiUpdate(aiMove) {
     this.updateHistory();
     this.updateStatus();
+    //To update the board and keep playing we trigger the onMoveEnd() event
     this.onMoveEnd();
     this.chatMessage(`CPU: ${aiMove}`);
     this.chatMessage(this.state.status);
+  };
 
-  }
 
   //Notifications
   showNotifications() {
-    // If the Notifications API is supported by the browser
-    // then show the notification
     if(this.n.supported()) this.n.show();
-  }
+  };
 
   notificationClick(event) {
-    // Do something here such as
-    // console.log("Notification Clicked") OR
-    // window.focus() OR
-    // window.open("http://www.google.com")
     console.log('Notification clicked!');
-    // Lastly, Close the notification
     this.n.close(event.target.tag);
-  }
+  };
+
 
   render() {
     return(

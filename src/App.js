@@ -14,8 +14,6 @@ class App extends Component {
 
     this.loadGame = this.loadGame.bind(this);
     this.newGame = this.newGame.bind(this);
-    this.logIn = this.logIn.bind(this);
-    this.signIn = this.signIn.bind(this);
   }
 
   componentDidMount() {
