@@ -3,9 +3,6 @@ import './app.css';
 import LobbyContainer from './containers/LobbyContainer.js';
 import GameContainer from './containers/GameContainer.js';
 import RequestHelper from './helpers/RequestHelper.js';
-// import Player from './models/Player.js';
-// import PlayerForm from './components/PlayerForm.js';
-// import PlayerHelper from './helpers/PlayerHelper.js';
 import config from './config/config.js';
 
 class App extends Component {
@@ -13,8 +10,6 @@ class App extends Component {
     super();
     this.state = {
       view: null,
-      player: null,
-      // playerHelper: new PlayerHelper()
     }
 
     this.loadGame = this.loadGame.bind(this);
@@ -50,6 +45,7 @@ class App extends Component {
           finished={false}
           ai={false}
           aiDifficulty='1'
+          // Database inversion (MLab)
           // id={gamesData[gamesData.length -1]._id}
           // fen={gamesData[gamesData.length -1].fen}
           // history={gamesData[gamesData.length -1].history}
@@ -76,34 +72,11 @@ class App extends Component {
       });
   };
 
-  //player auth methods
-  signIn(player) {
-    this.state.playerHelper.checkForAccount(player);
-  };
-
-
-  logIn(player) {
-    const request = new RequestHelper(`${config.serverPlayer}/${player.account}`);
-    request.get()
-      .then((playerData) => {
-        if (playerData[0] && playerData[0].password === player.password) {
-          this.setState({
-            player: playerData[0]
-          });
-          alert(`Welcome back ${player.account}`);
-        } else {
-          alert('Password or Account are incorrect');
-        };
-      });
-  };
-
-
   //render method
   render() {
     return (
       <div className="App">
         <div className='header'>
-          {/* <PlayerForm signIn = {this.signIn} logIn = {this.logIn} /> */}
         </div>
         {this.state.view}
       </div>
