@@ -78,7 +78,7 @@ class ChessContainer extends Component {
 
   //Updates
 
-  update() {
+  update(square, toSquare) {
     this.updateHistory();
     this.updateStatus();
     this.chatMessage(`Moved from ${square} to ${toSquare}`);
