@@ -7,6 +7,6 @@
 
 export default {
   server: 'https://server-bhljkevnge.now.sh',
-  serverGame: 'https://server-bhljkevnge.now.sh',
-  serverPlayer: 'https://server-bhljkevnge.now.sh'
+  serverGame: 'https://server-bhljkevnge.now.sh/games',
+  serverPlayer: 'https://server-bhljkevnge.now.sh/players'
 }
