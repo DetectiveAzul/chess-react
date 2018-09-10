@@ -37,16 +37,16 @@ class App extends Component {
       gamesData.reverse();
         this.setState({
         view: <GameContainer
-          // id={gamesData[0]._id}
-          // fen={gamesData[0].fen}
-          // history={gamesData[0].history}
+          id={gamesData[0]._id}
+          fen={gamesData[0].fen}
+          history={gamesData[0].history}
           finished={false}
           ai={false}
           aiDifficulty='1'
           // Database inversion (MLab)
-          id={gamesData[gamesData.length -1]._id}
-          fen={gamesData[gamesData.length -1].fen}
-          history={gamesData[gamesData.length -1].history}
+          // id={gamesData[gamesData.length -1]._id}
+          // fen={gamesData[gamesData.length -1].fen}
+          // history={gamesData[gamesData.length -1].history}
         />
       });
 
