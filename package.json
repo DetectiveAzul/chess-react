@@ -1,7 +1,6 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "homepage": "http://DetectiveAzul.github.io/chess-react",
   "private": true,
   "dependencies": {
     "chess.js": "^0.10.2",
